@@ -18,8 +18,8 @@ void SpriteRenderer::Update(float* a_DeltaTime)
 
 void SpriteRenderer::Draw()
 {
-	Vector3 Position = m_AttachedObject->GetTransform()->GetGlobalPosition();
-	float Rotation = m_AttachedObject->GetTransform()->GetGlobalRotation() * (float)(180.0f / PI);
+	Vector3 Position = m_AttachedObject->GetTransform().GetGlobalPosition();
+	float Rotation = m_AttachedObject->GetTransform().GetGlobalRotation() * (float)(180.0f / PI);
 
 	RAYLIB_H::DrawTexturePro(
 		m_Texture,	   // The Texture that is being Rendered

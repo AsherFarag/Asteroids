@@ -1,10 +1,10 @@
 #include "GameObject.h"
 #include "Component.h"
-#include "Transform.h"
+#include "Transformation.h"
 
 GameObject::GameObject()
 {
-	*m_Transform = Transformation();
+	m_Transform = Transformation();
 }
 GameObject::GameObject(GameObject* a_Parent)
 {
@@ -24,7 +24,7 @@ GameObject::~GameObject()
 void GameObject::AddChild(GameObject* a_Child)
 {
 	m_Children.push_back(a_Child);
-	a_Child->m_Transform->m_Parent = m_Transform;
+	a_Child->GetTransform().m_Parent = &m_Transform;
 }
 void GameObject::AddComponent(Component* a_Component)
 {
