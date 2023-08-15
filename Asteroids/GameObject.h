@@ -1,32 +1,87 @@
 #pragma once
 
+#include <map>
 #include <vector>
+#include <typeinfo>
 #include "Transformation.h"
-
-class Component;
-class Transformation;
+#include "Component.h"
 
 class GameObject
 {
 public:
-
 	GameObject();
 	GameObject(GameObject* a_Parent);
 	~GameObject();
 	
 	Transformation& GetTransform() { return m_Transform; }
 
+	#pragma region Heirarchy Handling
+
 	GameObject* m_Parent = nullptr;
 	std::vector<GameObject*> m_Children;
-	std::vector<Component*> m_Components;
+	std::map<size_t, Component*> m_Components;
 
 	void AddChild(GameObject* a_Child);
-	void AddComponent(Component* a_Component);
 
-	void Update(float* a_DeltaTime);
+	template < typename T >
+	T* AddComponent();
+
+	template < typename T >
+	T* GetComponent();
+
+	template < typename T >
+	bool DestroyComponent();
+
+	#pragma endregion
+
+	void Update(float a_DeltaTime);
 	void Draw();
 
 private:
-
 	Transformation m_Transform;
 };
+
+#pragma region Component Handling
+
+template < typename T >
+T* GameObject::AddComponent()
+{
+	auto& Type = typeid(T);
+	auto TypeHash = Type.hash_code();
+	Component*& NewComponent = m_Components[TypeHash];
+
+	if (NewComponent != nullptr)
+	{
+		return (T*)NewComponent;
+	}
+
+	NewComponent = new T();
+	NewComponent->m_AttachedObject = this;
+	return (T*)NewComponent;
+}
+
+template < typename T >
+T* GameObject::GetComponent()
+{
+	auto& Type = typeid(T);
+	auto TypeHash = Type.hash_code();
+	return (T*)m_Components[TypeHash];
+}
+
+template < typename T >
+bool GameObject::DestroyComponent()
+{
+	auto& Type = typeid(T);
+	auto TypeHash = Type.hash_code();
+	Component* ToDestroy = m_Components[TypeHash];
+
+	if (ToDestroy == nullptr)
+	{
+		return false;
+	}
+
+	delete ToDestroy;
+	return true;
+}
+
+#pragma endregion

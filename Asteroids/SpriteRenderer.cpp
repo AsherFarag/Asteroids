@@ -1,20 +1,25 @@
 #include "SpriteRenderer.h"
-#include "GameObject.h"
-#include <raylib.h>
-#include "EngineAPI.h"
+
+SpriteRenderer::SpriteRenderer()
+	: Component()
+{}
+
+SpriteRenderer::~SpriteRenderer()
+{}
 
 float SpriteRenderer::GetTextureWidth()
 {
 	return m_Texture.width;
 }
+
 float SpriteRenderer::GetTextureHeight()
 {
 	return m_Texture.height;
 }
 
-void SpriteRenderer::Update(float* a_DeltaTime)
-{
-}
+
+
+void SpriteRenderer::Update(float a_DeltaTime) { }
 
 void SpriteRenderer::Draw()
 {

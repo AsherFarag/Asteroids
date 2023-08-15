@@ -1,4 +1,4 @@
-///*******************************************************************************************
+
 //*
 //*   raylib [core] example - Basic window
 //*
@@ -64,7 +64,6 @@
 //
 //    return 0;
 //}
-
 
 #include <iostream>
 #include "EngineAPI.h"

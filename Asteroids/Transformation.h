@@ -1,7 +1,9 @@
 #pragma once
 
 #include <vector>
+#include <iostream>
 #include "Math.h"
+#include "raymath.h"
 
 class GameObject;
 
@@ -18,12 +20,14 @@ public:
 	Transformation* m_Parent = nullptr;
 	std::vector<Transformation*> m_Children;
 
-#pragma region Properties
+
+
+	#pragma region Properties
 
 	// ===== Global =====
 	const Mat4& GetGlobalMatrix() const;
 	const Vec3& GetGlobalPosition() const;
-	float	GetGlobalRotation() const;
+	float GetGlobalRotation() const;
 	const Vec3& GetGlobalScale() const;
 
 	// ===== Local Getters =====
@@ -37,9 +41,8 @@ public:
 	void SetLocalRotation(float a_Value);
 	void SetLocalScale(const Vec3& a_Value);
 
-#pragma endregion
+	#pragma endregion
 
-protected:
 private:
 
 	// ===== General Functions =====
@@ -48,8 +51,9 @@ private:
 	// ===== Members =====
 	mutable Mat4 m_GlobalMatrix;
 	mutable Mat4 m_LocalMatrix;
-	Vec3 m_Position;
-	float m_Rotation = 0;
-	Vec3 m_Scale = Vec3{ 1.0f, 1.0f, 1.0f };
 	mutable bool m_Dirty = true;
+
+	Vec3  m_Position;
+	float m_Rotation = 0;
+	Vec3  m_Scale = Vec3{ 1.0f, 1.0f, 1.0f };
 };

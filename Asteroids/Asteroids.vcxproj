@@ -27,6 +27,7 @@
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="SpaceCraft.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Transformation.cpp" />
   </ItemGroup>
@@ -37,6 +38,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="SpaceCraft.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Transformation.h" />
   </ItemGroup>

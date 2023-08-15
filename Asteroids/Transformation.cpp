@@ -1,7 +1,6 @@
-#include <iostream>
 
 #include "Transformation.h"
-#include "raymath.h"
+
 
 // ===== Constructors =====
 Transformation::Transformation()
@@ -19,9 +18,13 @@ Transformation::~Transformation()
 
 }
 
+
+
 // ===== Heirarchies =====
 Transformation* m_Parent;
 std::vector<Transformation*> m_Children;
+
+
 
 // ===== General Functions =====
 void Transformation::UpdateTransform(bool a_Force) const
@@ -40,6 +43,8 @@ void Transformation::UpdateTransform(bool a_Force) const
 			 m_Children[i]->UpdateTransform(true);
 	}
 }
+
+
 
 #pragma region Properties
 
@@ -81,6 +86,8 @@ const Vec3& Transformation::GetGlobalScale() const
 	return Vec3{ XMagnitude, YMagnitude, 0.0f }; // Returns the Scale as a Vector3
 }
 
+
+
 // ===== Local Getters =====
 const Mat4& Transformation::GetLocalMatrix() const
 {
@@ -102,6 +109,8 @@ const Vec3& Transformation::GetLocalScale() const
 {
 	return m_Scale;
 }
+
+
 
 // ===== Local Setters =====
 void Transformation::SetLocalPosition(const Vec3& a_Value)
