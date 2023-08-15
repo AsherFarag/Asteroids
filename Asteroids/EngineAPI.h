@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "GameObject.h"
+#include "Resource.h"
 #include <vector>
 
 class GameObject;

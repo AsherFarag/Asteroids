@@ -6,8 +6,12 @@
 class SpaceCraft
 	: public GameObject
 {
+public:
 	SpaceCraft();
 	~SpaceCraft();
 
+private:
+	// ===== Components =====
+	SpriteRenderer* m_SpriteRender;
 };
 

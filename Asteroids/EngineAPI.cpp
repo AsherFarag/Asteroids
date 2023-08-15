@@ -1,5 +1,6 @@
 
 #include "EngineAPI.h"
+#include "SpaceCraft.h"
 
 EngineAPI* EngineAPI::m_Instance = nullptr;
 
@@ -18,11 +19,14 @@ void EngineAPI::Start()
 {
 	InitWindow(m_WindowWidth, m_WindowHeight, m_ApplicationName);
 	SetTargetFPS(m_TargetFPS);
+
+	Load();
 }
 
 void EngineAPI::Run()
 {
-	
+	SpaceCraft S;
+
 	while (!WindowShouldClose())
 	{
 		float DeltaTime = GetFrameTime();
@@ -45,6 +49,7 @@ void EngineAPI::Run()
 
 void EngineAPI::End()
 {
+	Unload();
 	delete m_Instance;
 }
 
@@ -84,12 +89,12 @@ EngineAPI::~EngineAPI()
 
 void EngineAPI::Load()
 {
-
+	Resource::LoadResources();
 }
 
 void EngineAPI::Unload()
 {
-
+	Resource::UnloadResources();
 }
 
 #pragma endregion

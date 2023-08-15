@@ -2,6 +2,8 @@
 
 SpaceCraft::SpaceCraft()
 {
-	//AddComponent(new SpriteRenderer(this));
-	SpriteRenderer* SR = AddComponent<SpriteRenderer>();
+	GetTransform().SetLocalPosition(Vec3{ 400, 400, 0 });
+	m_SpriteRender = AddComponent<SpriteRenderer>();
+	m_SpriteRender->SetSprite("SpaceCraft");
 }
+SpaceCraft::~SpaceCraft() {}
