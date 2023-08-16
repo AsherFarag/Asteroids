@@ -45,17 +45,13 @@ private:
 
 	const char* m_ApplicationName = "Asteroids";
 
-	const int m_TargetFPS	   = 60;
+	const int m_TargetFPS	 = 60;
 
-	const int m_WindowWidth  = 800;
-	const int m_WindowHeight = 800;
+	const int m_WindowWidth  = 1000;
+	const int m_WindowHeight = 1000;
 
 	const int m_WindowScaleX = 1;
 	const int m_WindowScaleY = 1;
 
 	std::vector<GameObject*> m_GameObjects;
-
-	/*GameObject* m_GameObjects = nullptr;
-	int m_GameObjectsSize = 50;
-	int m_ElementsInGameObjects = 0;*/
 };

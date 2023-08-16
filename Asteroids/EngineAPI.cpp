@@ -25,7 +25,7 @@ void EngineAPI::Start()
 
 void EngineAPI::Run()
 {
-	SpaceCraft S;
+	SpaceCraft S; // Temp
 
 	while (!WindowShouldClose())
 	{
@@ -34,15 +34,17 @@ void EngineAPI::Run()
 		Update(DeltaTime);
 
 		#pragma region Graphics
+
 		BeginDrawing();
 		ClearBackground(BLACK);
 
 		Draw();
 
 		// ===== Temp =====
-		DrawText("20!", 350, 350, 50, GREEN);
+		DrawText("SCORE: 10000", 5, 0, 50, GREEN);
 
 		EndDrawing();
+
 		#pragma endregion
 	}
 }

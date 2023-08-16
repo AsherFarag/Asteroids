@@ -15,16 +15,14 @@ public:
 
     Color m_Tint = RAYLIB_H::WHITE;
 
-    float m_PivotSpawnX, m_PivotSpawnY; // On Load, these Numbers are used to Spawn the Pivot at a Point Set by the Attached Object
-    Vector2 m_Pivot; // Where the Sprite is Connected to and Rotates Around
-
     virtual void Update(float a_DeltaTime) override;
     virtual void Draw() override;
 
-    void SetSprite(const string& a_SpriteName);
+    void SetSprite(const string& a_SpriteName, float a_PivotSpawnX, float a_PivotSpawnY);
 
 private:
-    Sprite2D* m_Texture;
+    Sprite2D* m_Sprite2D;
+    Vector2 m_Pivot; // Where the Sprite is Connected to and Rotates Around
     Rectangle m_TextureMask;
 };
 
