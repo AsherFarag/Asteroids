@@ -10,7 +10,7 @@ void SpriteRenderer::SetSprite(const string& a_SpriteName, float a_PivotSpawnX, 
 
 	if (m_Sprite2D == nullptr)
 	{
-		m_TextureMask = Rectangle{ 0.0f, 0.0f, 0.0f, 0.0f }; // Default Mask
+		m_TextureMask = Rectangle{ 0.0f, 0.0f, 0.0f, 0.0f };
 		return;
 	}
 
@@ -26,8 +26,8 @@ void SpriteRenderer::Draw()
 	if (m_Sprite2D == nullptr)
 		return;
 
-	Vector3 Position = m_AttachedObject->GetTransform().GetGlobalPosition();
-	float Rotation = m_AttachedObject->GetTransform().GetGlobalRotation();
+	Vector3 Position = m_AttachedObject->GetTransform().GetLocalPosition();
+	float Rotation = m_AttachedObject->GetTransform().GetGlobalRotation() * (float)(180.0f / PI);
 
 	RAYLIB_H::DrawTexturePro(
 		*m_Sprite2D->GetTexture(),// The Texture that is being Rendered
@@ -36,5 +36,10 @@ void SpriteRenderer::Draw()
 		m_Pivot,	   // A point where the Sprite is Drawn and Rotated around
 		Rotation,	   // The Global Rotation of the Sprite
 		m_Tint);	   // the Colour of the Sprite
+}
+
+void SpriteRenderer::SetUpComponent()
+{
+
 }
 

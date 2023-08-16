@@ -41,6 +41,9 @@ public:
 	void SetLocalRotation(float a_Value);
 	void SetLocalScale(const Vec3& a_Value);
 
+	void AddLocalPosition(const Vec3& a_Value);
+	void AddLocalRotation(float a_Value);
+
 	#pragma endregion
 
 private:

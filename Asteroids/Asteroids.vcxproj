@@ -26,7 +26,9 @@
     <ClCompile Include="EngineAPI.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="Resource.cpp" />
+    <ClCompile Include="RigidBody2D.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SpaceCraft.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
@@ -40,7 +42,9 @@
     <ClInclude Include="EngineAPI.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="PlayerController.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="RigidBody2D.h" />
     <ClInclude Include="SpaceCraft.h" />
     <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="SpriteRenderer.h" />

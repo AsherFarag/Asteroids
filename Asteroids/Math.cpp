@@ -16,8 +16,8 @@ Mat4 Math::CreateRotationZ(float a_Radians)
     float RCos = std::cos(a_Radians);
     float RSin = std::sin(a_Radians);
 
-    Result.m0 = (RCos);  Result.m1 = (RSin);
-    Result.m4 = (-RSin); Result.m5 = (RCos);
+    Result.m0 = (RCos);  Result.m4 = (RSin);
+    Result.m1 = (-RSin); Result.m5 = (RCos);
 
     return Result;
 }
@@ -25,8 +25,8 @@ Mat4 Math::CreateTranslation(float a_X, float a_Y)
 {
     Matrix Result = Identity;
 
-    Result.m8 = (a_X);
-    Result.m9 = (a_Y);
+    Result.m2 = (a_X);
+    Result.m6 = (a_Y);
 
     return Result;
 }

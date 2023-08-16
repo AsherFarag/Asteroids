@@ -13,6 +13,8 @@ public:
 	virtual void Update(float a_DeltaTime) = 0;
 	virtual void Draw() = 0;
 
+	virtual void SetUpComponent() = 0; // Called at the End of GameObject::AddComponent once the Component has a Parent
+
 protected:
 private:
 	

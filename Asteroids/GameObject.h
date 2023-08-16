@@ -57,6 +57,7 @@ T* GameObject::AddComponent()
 
 	NewComponent = new T();
 	NewComponent->m_AttachedObject = this;
+	NewComponent->SetUpComponent();
 	return (T*)NewComponent;
 }
 

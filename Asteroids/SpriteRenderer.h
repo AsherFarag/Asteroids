@@ -18,6 +18,8 @@ public:
     virtual void Update(float a_DeltaTime) override;
     virtual void Draw() override;
 
+    virtual void SetUpComponent() override;
+
     void SetSprite(const string& a_SpriteName, float a_PivotSpawnX, float a_PivotSpawnY);
 
 private:
