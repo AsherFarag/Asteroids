@@ -32,10 +32,12 @@ public:
 private:
     float m_Mass;
 
-    Vec3  m_LinearDrag;
+    // ===== Linear =====
+    Vec3  m_LinearDrag; // Don't ask how there is friction in a vacumn
     Vec3  m_LinearVelocity;
     Vec3  m_LinearAcceleration;
 
+    // ===== Angular =====
     float m_AngularDrag;
     float m_AngularVelocity;
     float m_AngularAcceleration;

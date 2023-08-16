@@ -50,13 +50,14 @@ private:
 
 	// ===== General Functions =====
 	void UpdateTransform(bool Force) const;
+	void WrapPosition() const;
 
 	// ===== Members =====
 	mutable Mat4 m_GlobalMatrix;
 	mutable Mat4 m_LocalMatrix;
 	mutable bool m_Dirty = true;
 
-	Vec3  m_Position;
+	mutable Vec3 m_Position;
 	float m_Rotation = 0;
 	Vec3  m_Scale = Vec3{ 1.0f, 1.0f, 1.0f };
 };

@@ -24,6 +24,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="EngineAPI.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="PlayerController.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="EngineAPI.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="PlayerController.h" />

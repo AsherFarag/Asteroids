@@ -2,6 +2,8 @@
 #include "EngineAPI.h"
 #include "SpaceCraft.h"
 
+#pragma region Singleton Handling
+
 EngineAPI* EngineAPI::m_Instance = nullptr;
 
 EngineAPI* EngineAPI::GetInstance()
@@ -12,6 +14,8 @@ EngineAPI* EngineAPI::GetInstance()
 	}
 	return m_Instance;
 }
+
+#pragma endregion
 
 #pragma region Game States
 
@@ -40,12 +44,14 @@ void EngineAPI::Run()
 
 		Draw();
 
-		// ===== Temp =====
-		DrawText("SCORE: 10000", 5, 0, 50, GREEN);
-
 		EndDrawing();
 
 		#pragma endregion
+
+		#pragma region User Interface
+		m_GameManager.DisplayScore(10, 5, SKYBLUE, 50);
+		#pragma endregion
+
 	}
 }
 
@@ -57,18 +63,15 @@ void EngineAPI::End()
 
 #pragma endregion
 
+#pragma region Getters
 
-
-
-#pragma region Properties
-
-const int EngineAPI::GetWindowWidth()
+int EngineAPI::GetWindowWidth()
 {
-	return m_WindowWidth;
+	return m_Instance->m_WindowWidth;
 }
-const int EngineAPI::GetWindowHeight()
+int EngineAPI::GetWindowHeight()
 {
-	return m_WindowHeight;
+	return m_Instance->m_WindowHeight;
 }
 
 #pragma endregion
@@ -87,7 +90,7 @@ EngineAPI::~EngineAPI()
 
 #pragma endregion
 
-#pragma region Load Handling
+#pragma region Resource Load Handling
 
 void EngineAPI::Load()
 {

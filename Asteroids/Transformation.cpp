@@ -1,5 +1,6 @@
 
 #include "Transformation.h"
+#include "EngineAPI.h"
 
 
 // ===== Constructors =====
@@ -31,6 +32,8 @@ void Transformation::UpdateTransform(bool a_Force) const
 {
 	if (m_Dirty || a_Force)
 	{
+		WrapPosition();
+
 		Mat4 Translation = Math::CreateTranslation(m_Position.x, m_Position.y);
 		Mat4 Rotation = Math::CreateRotationZ(m_Rotation);
 		Mat4 Scale = Math::CreateScale(m_Scale.x, m_Scale.y);
@@ -42,6 +45,21 @@ void Transformation::UpdateTransform(bool a_Force) const
 		for (int i = 0; i < m_Children.size(); i++)
 			 m_Children[i]->UpdateTransform(true);
 	}
+}
+
+void Transformation::WrapPosition() const
+{
+	if (m_Position.x < -30.0f)
+		m_Position.x += (float)EngineAPI::GetWindowWidth() + 30.0f;
+
+	else if (m_Position.x >= (float)EngineAPI::GetWindowWidth() + 30.0f)
+		m_Position.x -= (float)EngineAPI::GetWindowWidth() + 30.0f;
+
+	if (m_Position.y < -30.0f)
+		m_Position.y += (float)EngineAPI::GetWindowHeight() + 30.0f;
+
+	else if (m_Position.y >= (float)EngineAPI::GetWindowHeight() + 30.0f)
+		m_Position.y -= (float)EngineAPI::GetWindowHeight() + 30.0f;
 }
 
 
@@ -132,11 +150,13 @@ void Transformation::SetLocalScale(const Vec3& a_Value)
 }
 
 
+
 void Transformation::AddLocalPosition(const Vec3& a_Value)
 {
 	m_Position = Vector3Add(m_Position, a_Value);
 	m_Dirty = true;
 }
+
 void Transformation::AddLocalRotation(float a_Value)
 {
 	m_Rotation += a_Value;
