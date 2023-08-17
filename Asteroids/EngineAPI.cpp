@@ -1,6 +1,7 @@
 
 #include "EngineAPI.h"
 #include "SpaceCraft.h"
+#include "Asteroid.h"
 
 #pragma region Singleton Handling
 
@@ -49,9 +50,14 @@ void EngineAPI::Run()
 		#pragma endregion
 
 		#pragma region User Interface
+		//	Display Score:          Pos   Colour   Font
 		m_GameManager.DisplayScore(10, 5, SKYBLUE, 50);
-		#pragma endregion
 
+		// ===== FPS Counter =====
+		std::string FPS = "FPS: " + std::to_string(GetFPS());
+		DrawText(FPS.c_str(), 5, m_WindowHeight - 20, 20, SKYBLUE);
+
+		#pragma endregion
 	}
 }
 
@@ -72,6 +78,14 @@ int EngineAPI::GetWindowWidth()
 int EngineAPI::GetWindowHeight()
 {
 	return m_Instance->m_WindowHeight;
+}
+
+GameManager* EngineAPI::GetGameManager()
+{
+	if (GetInstance() == nullptr)
+		return nullptr;
+
+	return &m_Instance->m_GameManager;
 }
 
 #pragma endregion
@@ -113,20 +127,21 @@ void EngineAPI::RegisterGameObject(GameObject* a_GameObject)
 
 void EngineAPI::UnregisterGameObject(GameObject* a_GameObject)
 {
-	for (int i = 0; i < m_GameObjects.size(); i++)
-		m_GameObjects.at(i) = nullptr;
+	std::remove(m_GameObjects.begin(), m_GameObjects.end(), a_GameObject);
 }
 
 void EngineAPI::Update(float a_DeltaTime)
 {
-	for (int i = 0; i < m_GameObjects.size(); i++)
-		m_GameObjects.at(i)->Update(a_DeltaTime);
+	for (int i = m_GameObjects.size() - 1; i >= 0; i--)
+		m_GameObjects[i]->Update(a_DeltaTime);
+
+	m_GameManager.Update(a_DeltaTime);
 }
 
 void EngineAPI::Draw()
 {
-	for (int i = 0; i < m_GameObjects.size(); i++)
-		m_GameObjects.at(i)->Draw();
+	for (int i = m_GameObjects.size() - 1; i >= 0; i--)
+		m_GameObjects[i]->Draw();
 }
 
 #pragma endregion

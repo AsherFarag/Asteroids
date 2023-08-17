@@ -1,5 +1,6 @@
 #include "SpaceCraft.h"
 #include "EngineAPI.h"
+#include "GameObject.h"
 
 SpaceCraft::SpaceCraft()
 {

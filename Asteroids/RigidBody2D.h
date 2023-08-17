@@ -25,6 +25,7 @@ public:
     void SetAngularAcceleration(float a_AngularAcceleration) { m_AngularAcceleration = a_AngularAcceleration; }
 
     void SetLinearVelocity(Vec3 a_LinearVelocity) { m_LinearVelocity = a_LinearVelocity; }
+    void SetLinearVelocity(float a_LinearSpeed);
     void SetAngularVelocity(float a_AngularVelocity) { m_AngularVelocity = a_AngularVelocity; }
 
     #pragma endregion

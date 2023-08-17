@@ -37,7 +37,7 @@ public:
 	void Update(float a_DeltaTime);
 	void Draw();
 
-private:
+protected:
 	Transformation m_Transform;
 };
 

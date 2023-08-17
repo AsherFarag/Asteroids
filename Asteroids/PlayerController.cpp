@@ -33,6 +33,7 @@ void PlayerController::Update(float a_DeltaTime)
 
 void PlayerController::Draw()
 {
+
 }
 
 void PlayerController::SetUpComponent()

@@ -38,7 +38,7 @@ public:
 
 	// ===== Local Setters =====
 	void SetLocalPosition(const Vec3& a_Value);
-	void SetLocalRotation(float a_Value);
+	void SetLocalRotation(float a_Degrees);
 	void SetLocalScale(const Vec3& a_Value);
 
 	void AddLocalPosition(const Vec3& a_Value);

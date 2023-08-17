@@ -38,3 +38,10 @@ void RigidBody2D::SetLinearAcceleration(float a_LinearSpeed)
 		Vector3Normalize(Vec3{ m_AttachedObjectTransform->GetGlobalMatrix().m0, m_AttachedObjectTransform->GetGlobalMatrix().m4 }), // Finds the Normal of the Direction the Transform is facing
 		a_LinearSpeed);
 }
+
+void RigidBody2D::SetLinearVelocity(float a_LinearSpeed)
+{
+	m_LinearVelocity = Vector3Scale(
+		Vector3Normalize(Vec3{ m_AttachedObjectTransform->GetGlobalMatrix().m0, m_AttachedObjectTransform->GetGlobalMatrix().m4 }), // Finds the Normal of the Direction the Transform is facing
+		a_LinearSpeed);
+}

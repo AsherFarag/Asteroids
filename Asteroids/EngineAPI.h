@@ -24,11 +24,14 @@ public:
 	// ===== Getters =====
 	static int   GetWindowWidth();
 	static int   GetWindowHeight();
-	GameManager* GetGameManager() { return &m_GameManager; }
+	static GameManager* GetGameManager();
 
 	// ===== GameObject Handling =====
 	void RegisterGameObject(GameObject* a_GameObject);	 // Adds the GameObject to the dynamic array
 	void UnregisterGameObject(GameObject* a_GameObject); // Removes the GameObject from the dynamic array
+
+	template < typename T, typename... Args >
+	static T* InstantiateObject(Args ...a_Args);
 
 private:
 	EngineAPI();
@@ -47,7 +50,7 @@ private:
 	const char* m_ApplicationName = "Asteroids";
 	Image m_ApplicationLogo;
 
-	const int m_TargetFPS	 = 60;
+	const int m_TargetFPS	 = 120;
 	const int m_WindowWidth  = 1000;
 	const int m_WindowHeight = 1000;
 	int m_WindowScaleX; // = WindowWidth / WindowHeight
@@ -55,3 +58,9 @@ private:
 
 	std::vector<GameObject*> m_GameObjects; // Vector List of all GameObjects*
 };
+
+template < typename T, typename... Args >
+T* EngineAPI::InstantiateObject( Args ...a_Args )
+{
+	return new T( a_Args... );
+}

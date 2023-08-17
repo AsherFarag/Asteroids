@@ -137,9 +137,9 @@ void Transformation::SetLocalPosition(const Vec3& a_Value)
 	m_Dirty = true;
 }
 
-void Transformation::SetLocalRotation(float a_Value)
+void Transformation::SetLocalRotation(float a_Degrees)
 {
-	m_Rotation = a_Value;
+	m_Rotation = a_Degrees * DEG2RAD;
 	m_Dirty = true;
 }
 

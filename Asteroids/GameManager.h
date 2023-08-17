@@ -8,7 +8,7 @@ public:
 	GameManager()  {}
 	~GameManager() {}
 
-private:
+	void Update(float a_DeltaTime);
 
 	#pragma region Player Score Handling
 
@@ -21,6 +21,19 @@ private:
 	int m_Score = 0;
 
 	#pragma endregion
+
+	#pragma region Asteroid Spawn Handling
+
+private:
+	void SpawnAsteroids(float a_DeltaTime);
+	void SpawnRandomAsteroid();
+
+	float m_GameDifficulty = 1;
+	float m_MaxGameDifficulty = 10;
+
+	float m_TimeSinceLastSpawn = 0.0f; // The Time since the Last Asteroid was Spawned
+	#pragma endregion
+
 
 };
 
