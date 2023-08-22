@@ -13,19 +13,20 @@ GameObject::GameObject()
 
 GameObject::GameObject(GameObject* a_Parent)
 {
-	GameObject();
+	m_Transform = Transformation(); // Creates a Transformation
+	EngineAPI::GetInstance()->RegisterGameObject(this); // Registers this GameObject to the Engine Instance
+
 	m_Parent = a_Parent;
 	m_Parent->AddChild(this);
 }
 
 GameObject::~GameObject()
 {
+	EngineAPI::UnregisterGameObject(this); // Unregisters this GameObject from the Engine Instance
 	for (auto Pair : m_Components)
 	{
 		delete Pair.second;
 	}
-
-	EngineAPI::GetInstance()->UnregisterGameObject(this); // Unregisters this GameObject from the Engine Instance
 }
 
 // ===== Heirarchy Handling =====
@@ -34,7 +35,6 @@ void GameObject::AddChild(GameObject* a_Child)
 	m_Children.push_back(a_Child);
 	a_Child->GetTransform().m_Parent = &m_Transform;
 }
-
 
 
 

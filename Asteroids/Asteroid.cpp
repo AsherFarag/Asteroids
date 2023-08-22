@@ -2,6 +2,8 @@
 
 Asteroid::Asteroid(int a_Size)
 {
+	m_Tag = "Asteroid";
+
 	// ===== Component Initialising =====
 	m_RigidBody2D = AddComponent<RigidBody2D>();
 	m_SpriteRenderer = AddComponent<SpriteRenderer>();
@@ -29,17 +31,21 @@ Asteroid::Asteroid(int a_Size)
 
 Asteroid::Asteroid(int a_Size, Transformation* a_CopyTransformation)
 {
-	Asteroid::Asteroid(a_Size);
+	new Asteroid(a_Size);
 
 	// TODO: Copy Transformation Info from Parent
 }
 
 Asteroid::Asteroid(int a_Size, Vec3 a_SpawnPosition, float a_Rotation, float a_Speed)
 {
+	m_Tag = "Asteroid";
+
 	// ===== Component Initialising =====
 	m_RigidBody2D = AddComponent<RigidBody2D>();
+	m_CircleCollider2D = AddComponent<CircleCollider2D>();
+	m_CircleCollider2D->SetRadius(60.0f / a_Size); // Temp
 	m_SpriteRenderer = AddComponent<SpriteRenderer>();
-#pragma region Sprite Setting
+	#pragma region Sprite Setting
 	std::string AsteroidSprite;
 	switch (a_Size)
 	{
@@ -54,7 +60,7 @@ Asteroid::Asteroid(int a_Size, Vec3 a_SpawnPosition, float a_Rotation, float a_S
 		break;
 	}
 	m_SpriteRenderer->SetSprite(AsteroidSprite, 0.5f, 0.5f);
-#pragma endregion
+	#pragma endregion
 
 
 	// ===== Member Initialising =====
@@ -69,4 +75,14 @@ Asteroid::Asteroid(int a_Size, Vec3 a_SpawnPosition, float a_Rotation, float a_S
 Asteroid::~Asteroid()
 {
 	EngineAPI::GetGameManager()->AddScore(100 * m_Size);
+
+	if (m_Size < 3)
+	{
+		SpawnSmallerAsteroids(m_Size - 1);
+	}
+}
+
+void Asteroid::SpawnSmallerAsteroids(int a_Size)
+{
+
 }

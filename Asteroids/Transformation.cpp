@@ -49,17 +49,17 @@ void Transformation::UpdateTransform(bool a_Force) const
 
 void Transformation::WrapPosition() const
 {
-	if (m_Position.x < -30.0f)
-		m_Position.x += (float)EngineAPI::GetWindowWidth() + 30.0f;
+	if (m_Position.x < -40.0f)
+		m_Position.x += (float)EngineAPI::GetWindowWidth() + 40.0f;
 
-	else if (m_Position.x >= (float)EngineAPI::GetWindowWidth() + 30.0f)
-		m_Position.x -= (float)EngineAPI::GetWindowWidth() + 30.0f;
+	else if (m_Position.x >= (float)EngineAPI::GetWindowWidth() + 40.0f)
+		m_Position.x -= (float)EngineAPI::GetWindowWidth() + 40.0f;
 
-	if (m_Position.y < -30.0f)
-		m_Position.y += (float)EngineAPI::GetWindowHeight() + 30.0f;
+	if (m_Position.y < -40.0f)
+		m_Position.y += (float)EngineAPI::GetWindowHeight() + 40.0f;
 
-	else if (m_Position.y >= (float)EngineAPI::GetWindowHeight() + 30.0f)
-		m_Position.y -= (float)EngineAPI::GetWindowHeight() + 30.0f;
+	else if (m_Position.y >= (float)EngineAPI::GetWindowHeight() + 40.0f)
+		m_Position.y -= (float)EngineAPI::GetWindowHeight() + 40.0f;
 }
 
 

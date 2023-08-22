@@ -5,6 +5,7 @@
 #include <typeinfo>
 #include "Transformation.h"
 #include "Component.h"
+#include <string>
 
 class GameObject
 {
@@ -12,8 +13,11 @@ public:
 	GameObject();
 	GameObject(GameObject* a_Parent);
 	~GameObject();
+
+	virtual void Destroy() = 0;
 	
 	Transformation& GetTransform() { return m_Transform; }
+	std::string* GetTag() { return &m_Tag; }
 
 	#pragma region Heirarchy Handling
 
@@ -39,9 +43,11 @@ public:
 
 protected:
 	Transformation m_Transform;
+	std::string m_Tag;
+
 };
 
-#pragma region Component Handling
+#pragma region Template Component Handling
 
 template < typename T >
 T* GameObject::AddComponent()

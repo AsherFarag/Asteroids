@@ -4,6 +4,7 @@
 #include "Resource.h"
 #include <vector>
 #include "GameManager.h"
+#include "PhysicsManager.h"
 
 class GameObject;
 
@@ -11,9 +12,10 @@ class EngineAPI
 {
 public:
 	#pragma region Singleton_Handling
-	static EngineAPI* GetInstance(); // Returns the Pointer of the Current EngineAPI Instance
+
 	EngineAPI(EngineAPI& other) = delete;
 	void operator=(const EngineAPI&) = delete;
+
 	#pragma endregion
 
 	// ===== Game States =====
@@ -24,11 +26,14 @@ public:
 	// ===== Getters =====
 	static int   GetWindowWidth();
 	static int   GetWindowHeight();
+	static int   GetTargetFrameRate();
+	static EngineAPI* GetInstance();
 	static GameManager* GetGameManager();
+	static PhysicsManager* GetPhysicsManager();
 
 	// ===== GameObject Handling =====
-	void RegisterGameObject(GameObject* a_GameObject);	 // Adds the GameObject to the dynamic array
-	void UnregisterGameObject(GameObject* a_GameObject); // Removes the GameObject from the dynamic array
+	static void RegisterGameObject(GameObject* a_GameObject);	// Adds the GameObject to the List of GameObjects
+	static void UnregisterGameObject(GameObject* a_GameObject); // Removes the GameObject from the List of GameObjects
 
 	template < typename T, typename... Args >
 	static T* InstantiateObject(Args ...a_Args);
@@ -40,6 +45,7 @@ private:
 
 	// ===== Managers =====
 	GameManager m_GameManager;
+	PhysicsManager m_PhysicsManager;
 
 	void Load();   // Load Resources at Start
 	void Unload(); // Unload Resources at End

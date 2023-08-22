@@ -5,14 +5,20 @@
 
 void GameManager::Update(float a_DeltaTime)
 {
-	GameManager::SpawnAsteroids(a_DeltaTime);
+	GameManager::SpawnAsteroids(a_DeltaTime);     
 }
 
-#pragma region Player Score Handling
+#pragma region Player Handling
 
 void GameManager::DisplayScore(int a_PosX, int a_PosY, Color a_Colour, int a_FontSize)
 {
 	DrawText( std::to_string( m_Score ).c_str(), a_PosX, a_PosY, a_FontSize, a_Colour );
+}
+
+void GameManager::DisplayLives(int a_PosX, int a_PosY, Color a_Colour, int a_FontSize)
+{
+	string PlayerLives = "Lives: " + std::to_string(m_PlayerLives);
+	DrawText(PlayerLives.c_str(), a_PosX, a_PosY, a_FontSize, a_Colour);
 }
 
 #pragma endregion 
@@ -44,7 +50,7 @@ void GameManager::SpawnRandomAsteroid()
 		SpawnPos.x = 0;
 		SpawnPos.y = GetRandomValue(0, EngineAPI::GetWindowHeight());
 		break;
-	case 2: // Top Side
+	case 2: // Bottom Side
 		SpawnPos.x = GetRandomValue(0, EngineAPI::GetWindowWidth());
 		SpawnPos.y = 0;
 		break;
@@ -52,13 +58,11 @@ void GameManager::SpawnRandomAsteroid()
 		SpawnPos.x = EngineAPI::GetWindowWidth();
 		SpawnPos.y = GetRandomValue(0, EngineAPI::GetWindowHeight());
 		break;
-	case 4: // Bottom Side
+	case 4: // Top Side
 		SpawnPos.x = GetRandomValue(0, EngineAPI::GetWindowWidth());
 		SpawnPos.y = EngineAPI::GetWindowHeight();
 		break;
 	}
-
-	
 
 	float Rotation = GetRandomValue(0, 360);
 	float Speed = GetRandomValue(100, 400);

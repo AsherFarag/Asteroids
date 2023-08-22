@@ -41,22 +41,24 @@ void EngineAPI::Run()
 		#pragma region Graphics
 
 		BeginDrawing();
+
 		ClearBackground(BLACK);
 
 		Draw();
 
-		EndDrawing();
-
-		#pragma endregion
-
 		#pragma region User Interface
-		//	Display Score:          Pos   Colour   Font
+		// Display Score:            Pos  Colour  Font
 		m_GameManager.DisplayScore(10, 5, SKYBLUE, 50);
+		// Display Player Lives:
+		m_GameManager.DisplayLives(10, 50, SKYBLUE, 50);
 
 		// ===== FPS Counter =====
 		std::string FPS = "FPS: " + std::to_string(GetFPS());
 		DrawText(FPS.c_str(), 5, m_WindowHeight - 20, 20, SKYBLUE);
 
+		#pragma endregion
+
+		EndDrawing();
 		#pragma endregion
 	}
 }
@@ -80,12 +82,25 @@ int EngineAPI::GetWindowHeight()
 	return m_Instance->m_WindowHeight;
 }
 
+int EngineAPI::GetTargetFrameRate()
+{
+	return m_Instance->m_TargetFPS;
+}
+
 GameManager* EngineAPI::GetGameManager()
 {
 	if (GetInstance() == nullptr)
 		return nullptr;
 
 	return &m_Instance->m_GameManager;
+}
+
+PhysicsManager* EngineAPI::GetPhysicsManager()
+{
+	if (GetInstance() == nullptr)
+		return nullptr;
+
+	return &m_Instance->m_PhysicsManager;
 }
 
 #pragma endregion
@@ -122,20 +137,23 @@ void EngineAPI::Unload()
 
 void EngineAPI::RegisterGameObject(GameObject* a_GameObject)
 {
-	m_GameObjects.push_back(a_GameObject);
+	m_Instance->m_GameObjects.push_back(a_GameObject);
 }
 
 void EngineAPI::UnregisterGameObject(GameObject* a_GameObject)
 {
-	std::remove(m_GameObjects.begin(), m_GameObjects.end(), a_GameObject);
+	m_Instance->m_GameObjects.erase( std::remove(m_Instance->m_GameObjects.begin(), m_Instance->m_GameObjects.end(), a_GameObject) );
 }
 
 void EngineAPI::Update(float a_DeltaTime)
 {
 	for (int i = m_GameObjects.size() - 1; i >= 0; i--)
+	{
 		m_GameObjects[i]->Update(a_DeltaTime);
+	}
 
 	m_GameManager.Update(a_DeltaTime);
+	m_PhysicsManager.FixedUpdate(a_DeltaTime);
 }
 
 void EngineAPI::Draw()
