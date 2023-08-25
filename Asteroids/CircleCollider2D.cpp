@@ -11,7 +11,8 @@ CircleCollider2D::CircleCollider2D(float a_Radius)
 }
 
 CircleCollider2D::~CircleCollider2D()
-{
+ {
+	
 }
 
 void CircleCollider2D::SetUpComponent()
@@ -23,14 +24,20 @@ void CircleCollider2D::SetUpComponent()
 
 void CircleCollider2D::Update(float a_DeltaTime)
 {
-	DrawCircleLines(m_AttachedTransform->GetLocalPosition().x, EngineAPI::GetWindowHeight() - m_AttachedTransform->GetLocalPosition().y, m_Radius, RED);
+	//DrawCircleLines(m_AttachedTransform->GetLocalPosition().x, EngineAPI::GetWindowHeight() - m_AttachedTransform->GetLocalPosition().y, m_Radius, RED);
 	if (m_IsColliding)
 	{
 		OnTrigger();
 	}
 }
 
+void CircleCollider2D::Destroy()
+{
+	EngineAPI::GetPhysicsManager()->UnregisterCollider(this);
+	delete this;
+}
+
 void CircleCollider2D::OnTrigger()
 {
-	//delete m_AttachedObject;
+	m_IsColliding = true;
 }

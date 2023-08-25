@@ -16,18 +16,22 @@ void PhysicsManager::RegisterCollider(CircleCollider2D* a_Collider)
 	m_CircleColliders.push_back(a_Collider);
 }
 
+void PhysicsManager::UnregisterCollider(CircleCollider2D* a_Collider)
+{
+	m_CircleColliders.erase( std::remove(m_CircleColliders.begin(), m_CircleColliders.end(), a_Collider) );
+}
+
 void PhysicsManager::CheckForCollisions()
 {
-	for (auto Collider : m_CircleColliders)
+	for (int i = 0; i < m_CircleColliders.size(); i++)
 	{
-		if (*Collider->GetTag() == "SpaceCraft")
-		{
-			if (CheckIfCollidingWithAsteroid(Collider))
-			{
-				Collider->m_IsColliding = true;
-				std::cout << " ====================== Is Colliding! ====================== \n";
-				//delete Collider->m_AttachedObject;
+		CircleCollider2D* Collider = m_CircleColliders[i];
 
+		if (*Collider->GetTag() == "SpaceCraft" || *Collider->GetTag() == "Bullet") // If the Collider is a SpaceCraft or a Bullet
+		{
+			if (CheckIfCollidingWithAsteroid(Collider)) // If the Collider is Colliding with an Asteroid
+			{
+				Collider->OnTrigger();
 			}
 		}
 	}
@@ -35,8 +39,10 @@ void PhysicsManager::CheckForCollisions()
 
 bool PhysicsManager::CheckIfCollidingWithAsteroid(CircleCollider2D* a_Collider)
 {
-	for (auto Asteroid : m_CircleColliders)
+	for (int i = 0; i < m_CircleColliders.size(); i++ )
 	{
+		CircleCollider2D* Asteroid = m_CircleColliders[i];
+
 		if (*Asteroid->GetTag() == "Asteroid" && &Asteroid != &a_Collider)
 		{
 			Vec3 ColliderPos = a_Collider->GetTransform()->GetLocalPosition();
@@ -45,12 +51,12 @@ bool PhysicsManager::CheckIfCollidingWithAsteroid(CircleCollider2D* a_Collider)
 			//  Hypotenuse =							     X squared                         +                                 Y Squared	
 			float Distance = (ColliderPos.x - AsteroidPos.x) * (ColliderPos.x - AsteroidPos.x) + (ColliderPos.y - AsteroidPos.y) * (ColliderPos.y - AsteroidPos.y); // Finds the Squared Distance between the two Colliders
 
-			bool IsColliding = sqrtf(Distance) < (a_Collider->GetRadius() + Asteroid->GetRadius()); // Checks if the Distance between the two Colliders is Less than their Radiuses Combined
+			// Checks if the Distance between the two Colliders is Less than their Radiuses Combined
+			bool IsColliding = sqrtf(Distance) < (a_Collider->GetRadius() + Asteroid->GetRadius());
 
 			if (IsColliding)
 			{
-				m_CircleColliders.erase( std::remove(m_CircleColliders.begin(), m_CircleColliders.end(), Asteroid) );
-				Asteroid->m_AttachedObject->Destroy();
+				Asteroid->OnTrigger();
 				return true;
 			}
 		}

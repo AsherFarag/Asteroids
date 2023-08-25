@@ -120,7 +120,7 @@ const Vec3& Transformation::GetLocalPosition() const
 
 float Transformation::GetLocalRotation() const
 {
-	return m_Rotation;
+	return m_Rotation * RAD2DEG;
 }
 
 const Vec3& Transformation::GetLocalScale() const

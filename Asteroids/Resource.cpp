@@ -39,6 +39,13 @@ void Resource::LoadResources()
 			Resource* AudioAddress = new Audio(FilePath.c_str());
 			s_Resources[TypeHash][FileName] = AudioAddress;
 		}
+		else if (FileExtension == "ogg") // ===== Sound Loading =====
+		{
+			auto& Type = typeid(Audio);
+			auto TypeHash = Type.hash_code();
+			Resource* AudioAddress = new Audio(FilePath.c_str());
+			s_Resources[TypeHash][FileName] = AudioAddress;
+		}
 	}
 
 	free(FilePaths);

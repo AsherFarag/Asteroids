@@ -32,6 +32,7 @@ public:
 	static PhysicsManager* GetPhysicsManager();
 
 	// ===== GameObject Handling =====
+	static void ClearGameObjects();
 	static void RegisterGameObject(GameObject* a_GameObject);	// Adds the GameObject to the List of GameObjects
 	static void UnregisterGameObject(GameObject* a_GameObject); // Removes the GameObject from the List of GameObjects
 
@@ -54,11 +55,10 @@ private:
 	void Draw(); // Iterates through m_GameObjects and calls Draw on each Game Object
 
 	const char* m_ApplicationName = "Asteroids";
-	Image m_ApplicationLogo;
 
-	const int m_TargetFPS	 = 120;
-	const int m_WindowWidth  = 1000;
-	const int m_WindowHeight = 1000;
+	int m_TargetFPS	   = 120;
+	int m_WindowWidth  = 1920;
+	int m_WindowHeight = 1080;
 	int m_WindowScaleX; // = WindowWidth / WindowHeight
 	int m_WindowScaleY; // = WindowHeight / WindowWidth
 

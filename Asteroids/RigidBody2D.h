@@ -28,6 +28,9 @@ public:
     void SetLinearVelocity(float a_LinearSpeed);
     void SetAngularVelocity(float a_AngularVelocity) { m_AngularVelocity = a_AngularVelocity; }
 
+    void  SetLinearSpeed(float a_LinearSpeed) { m_LinearSpeed = a_LinearSpeed; }
+    float GetLinearSpeed() { return m_LinearSpeed; }
+
     #pragma endregion
 
 private:
@@ -37,6 +40,7 @@ private:
     Vec3  m_LinearDrag; // Don't ask how there is friction in a vacumn
     Vec3  m_LinearVelocity;
     Vec3  m_LinearAcceleration;
+    float m_LinearSpeed = 0.0f;
 
     // ===== Angular =====
     float m_AngularDrag;

@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "RigidBody2D.h"
+#include "Transformation.h"
 
 class PlayerController :
     public Component
@@ -13,6 +14,7 @@ public:
 
 private:
     RigidBody2D* m_AttachedObjectRB;
+    Transformation* m_AttachedObjectTransform;
 
 #pragma region Movement
 

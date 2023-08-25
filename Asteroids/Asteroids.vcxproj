@@ -22,6 +22,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Asteroid.cpp" />
     <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CircleCollider2D.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <ClInclude Include="Asteroid.h" />
     <ClInclude Include="Audio.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="CircleCollider2D.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DynamicArray.h" />

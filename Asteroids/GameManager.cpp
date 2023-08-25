@@ -1,14 +1,27 @@
 #include "GameManager.h"
 #include "Asteroid.h"
+#include "SpaceCraft.h"
 #include <iostream>
 #include <string>
 
+#define SCORE_TO_DIFFICULTY_SCALE 0.0001f;
+
 void GameManager::Update(float a_DeltaTime)
 {
-	GameManager::SpawnAsteroids(a_DeltaTime);     
+	SpawnAsteroids(a_DeltaTime);
 }
 
 #pragma region Player Handling
+
+void GameManager::AddScore(int a_Points)
+{
+	m_Score += a_Points;
+
+	// Adds an Increment of Difficulty Scaled by the Score added
+	m_GameDifficulty += (float)a_Points * SCORE_TO_DIFFICULTY_SCALE;
+	if (m_GameDifficulty > m_MaxGameDifficulty)
+		m_GameDifficulty = m_MaxGameDifficulty;
+}
 
 void GameManager::DisplayScore(int a_PosX, int a_PosY, Color a_Colour, int a_FontSize)
 {
@@ -21,6 +34,36 @@ void GameManager::DisplayLives(int a_PosX, int a_PosY, Color a_Colour, int a_Fon
 	DrawText(PlayerLives.c_str(), a_PosX, a_PosY, a_FontSize, a_Colour);
 }
 
+void GameManager::DisplayDeathScreen()
+{
+	if (m_GameOver)
+	{
+
+		const char* Text = "GAME OVER!";
+		int FontSize = 100;
+		float TextWidth = MeasureText(Text, FontSize);
+
+		DrawText(Text,
+			(EngineAPI::GetWindowWidth() - TextWidth) / 2, // Draws at the middle of Screen Width
+			(EngineAPI::GetWindowHeight() / 2) - FontSize, // Draws at the middle of Screen Height
+			FontSize,
+			RED);
+	}
+}
+
+void GameManager::RespawnPlayer()
+{
+	EngineAPI::ClearGameObjects(); // Clears all objects from the Scene
+	EngineAPI::InstantiateObject<SpaceCraft>(); // Instantiates a New SpaceCraft
+	Reset(); // Resets Certain Values
+}
+
+void GameManager::Reset()
+{
+	m_TimeSinceLastSpawn = -1; // Adds some time so the Asteroids don't spawn instantly
+	m_GameDifficulty = 1.0f; // Starter Difficulty
+}
+
 #pragma endregion 
 
 #pragma region Asteroid Spawn Handling
@@ -28,7 +71,9 @@ void GameManager::DisplayLives(int a_PosX, int a_PosY, Color a_Colour, int a_Fon
 void GameManager::SpawnAsteroids(float a_DeltaTime)
 {
 	m_TimeSinceLastSpawn += a_DeltaTime;
-	float TimeUntilNextSpawn = 5.0f / m_GameDifficulty;
+
+	// Calculates the New Max Spawn Time based on Difficulty
+	float TimeUntilNextSpawn = 5.0f / m_GameDifficulty; // As Difficulty increases, Max Spawn Time decreases
 
 	if (m_TimeSinceLastSpawn > TimeUntilNextSpawn)
 	{
@@ -39,11 +84,11 @@ void GameManager::SpawnAsteroids(float a_DeltaTime)
 
 void GameManager::SpawnRandomAsteroid()
 {
-	int Size = 1; //GetRandomValue(1, 3);
+	int Size = 1; // Size 1 is Large
 
-	// SpawnPos Calculation
+	// Spawn Position Calculation
 	Vec3 SpawnPos{};
-	int Side = GetRandomValue(1, 4);
+	int Side = GetRandomValue(1, 4); // Randomly decides which Side the Asteroid will Spawn on
 	switch (Side)
 	{
 	case 1: // Left Side

@@ -20,6 +20,7 @@ bool Sprite2D::Load(const char* a_FilePath)
 		Unload();
 	}
 
+	m_Image = LoadImage(a_FilePath);
 	m_Texture2D = LoadTexture(a_FilePath);
 	return IsLoaded();
 }

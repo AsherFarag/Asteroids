@@ -38,8 +38,8 @@ public:
 
 	#pragma endregion
 
-	void Update(float a_DeltaTime);
-	void Draw();
+	virtual void Update(float a_DeltaTime);
+	virtual void Draw();
 
 protected:
 	Transformation m_Transform;

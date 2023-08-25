@@ -7,17 +7,15 @@ Audio::Audio(const char* a_FilePath)
 
 Audio::~Audio()
 {
-	UnloadSound(m_Sound);
+	if (IsLoaded())
+		UnloadSound(m_Sound);
 }
 
 #pragma region Load Handling
 
 bool Audio::Load(const char* a_FilePath)
 {
-	if (IsLoaded())
-	{
-		Unload();
-	}
+	Unload();
 	m_Sound = LoadSound(a_FilePath);
 	return IsLoaded();
 }
@@ -31,6 +29,7 @@ bool Audio::Unload()
 {
 	if (IsLoaded())
 	{
+		StopSound(m_Sound);
 		UnloadSound(m_Sound);
 		m_Sound = Sound();
 		return true;

@@ -25,7 +25,7 @@ GameObject::~GameObject()
 	EngineAPI::UnregisterGameObject(this); // Unregisters this GameObject from the Engine Instance
 	for (auto Pair : m_Components)
 	{
-		delete Pair.second;
+		Pair.second->Destroy();
 	}
 }
 

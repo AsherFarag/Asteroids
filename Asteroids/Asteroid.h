@@ -14,7 +14,8 @@ public:
     Asteroid(int a_Size, Vec3 a_SpawnPosition, float a_Rotation, float a_Speed); // Called when a New Asteroid is being made by the Game Manager
     ~Asteroid();
 
-    virtual void Destroy() override { delete this; }
+    virtual void Update(float a_DeltaTime) override;
+    virtual void Destroy() override;
 
 private:
     // ===== Components =====

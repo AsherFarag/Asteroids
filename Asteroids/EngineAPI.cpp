@@ -2,6 +2,7 @@
 #include "EngineAPI.h"
 #include "SpaceCraft.h"
 #include "Asteroid.h"
+#include "Audio.h"
 
 #pragma region Singleton Handling
 
@@ -25,15 +26,29 @@ void EngineAPI::Start()
 	InitWindow(m_WindowWidth, m_WindowHeight, m_ApplicationName);
 	SetTargetFPS(m_TargetFPS);
 
+	InitAudioDevice();
+
 	Load();
+
+	SetWindowIcon(*Resource::GetResource<Sprite2D>("LargeAsteroid1")->GetImage());
+
+	new SpaceCraft();
 }
 
 void EngineAPI::Run()
 {
-	SpaceCraft S; // Temp
-
 	while (!WindowShouldClose())
 	{
+		#pragma region Music
+
+		if (!IsSoundPlaying(*Resource::GetResource<Audio>("IntoTheVoid3")->GetSound()))
+		{
+			PlaySound(*Resource::GetResource<Audio>("IntoTheVoid3")->GetSound());
+			SetSoundVolume(*Resource::GetResource<Audio>("IntoTheVoid3")->GetSound(), 0.3f);
+		}
+
+		#pragma endregion
+
 		float DeltaTime = GetFrameTime();
 
 		Update(DeltaTime);
@@ -49,8 +64,10 @@ void EngineAPI::Run()
 		#pragma region User Interface
 		// Display Score:            Pos  Colour  Font
 		m_GameManager.DisplayScore(10, 5, SKYBLUE, 50);
-		// Display Player Lives:
+		// Display Player Lives:      Pos  Colour  Font
 		m_GameManager.DisplayLives(10, 50, SKYBLUE, 50);
+		// Display Game Over Screen IF it is Game Over
+		m_GameManager.DisplayDeathScreen();
 
 		// ===== FPS Counter =====
 		std::string FPS = "FPS: " + std::to_string(GetFPS());
@@ -66,6 +83,7 @@ void EngineAPI::Run()
 void EngineAPI::End()
 {
 	Unload();
+	CloseAudioDevice();
 	delete m_Instance;
 }
 
@@ -134,6 +152,12 @@ void EngineAPI::Unload()
 #pragma endregion
 
 #pragma region GameObject Handling
+
+void EngineAPI::ClearGameObjects()
+{
+	m_Instance->m_GameObjects.clear();
+	m_Instance->GetPhysicsManager()->m_CircleColliders.clear();
+}
 
 void EngineAPI::RegisterGameObject(GameObject* a_GameObject)
 {
