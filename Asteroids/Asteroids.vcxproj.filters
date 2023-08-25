@@ -132,4 +132,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="GameObject and Components.cd" />
+    <None Include="Engine and Managers.cd" />
+    <None Include="Resource.cd" />
+  </ItemGroup>
 </Project>

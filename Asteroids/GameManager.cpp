@@ -15,12 +15,15 @@ void GameManager::Update(float a_DeltaTime)
 
 void GameManager::AddScore(int a_Points)
 {
-	m_Score += a_Points;
+	if (m_GameOver == false)
+	{
+		m_Score += a_Points;
 
-	// Adds an Increment of Difficulty Scaled by the Score added
-	m_GameDifficulty += (float)a_Points * SCORE_TO_DIFFICULTY_SCALE;
-	if (m_GameDifficulty > m_MaxGameDifficulty)
-		m_GameDifficulty = m_MaxGameDifficulty;
+		// Adds an Increment of Difficulty Scaled by the Score added
+		m_GameDifficulty += (float)a_Points * SCORE_TO_DIFFICULTY_SCALE;
+		if (m_GameDifficulty > m_MaxGameDifficulty)
+			m_GameDifficulty = m_MaxGameDifficulty;
+	}
 }
 
 void GameManager::DisplayScore(int a_PosX, int a_PosY, Color a_Colour, int a_FontSize)

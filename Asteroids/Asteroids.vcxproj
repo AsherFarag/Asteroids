@@ -60,6 +60,11 @@
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Transformation.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource.cd" />
+    <None Include="Engine and Managers.cd" />
+    <None Include="GameObject and Components.cd" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

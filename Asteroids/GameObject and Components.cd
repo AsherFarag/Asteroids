@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Asteroid">
+    <Position X="4.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAAAAAAAAIBAAAAAAAgAABAAAABCAAAAAIAAAA=</HashCode>
+      <FileName>Asteroid.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObject">
+    <Position X="6" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IBQAAAAIAAAIEgAAAABCBAAAAADAIAIAAAAAAAIAAAA=</HashCode>
+      <FileName>GameObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bullet">
+    <Position X="6" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAAAIAAAAAAAAAAAAAAAABAgAAECEAAAABQAAA=</HashCode>
+      <FileName>Bullet.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceCraft">
+    <Position X="7.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAAAIAAAAAAAAAAAAAAAEBAgAAACAAAAQAAAAA=</HashCode>
+      <FileName>SpaceCraft.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Component">
+    <Position X="13.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQhAAAAAAAAAgCAAAAAAAAAAABAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Component.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpriteRenderer">
+    <Position X="10.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQRAAAAgAgBggAAAAAAAAAAAAAAAAgAAAAAAAAAIAA=</HashCode>
+      <FileName>SpriteRenderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerController">
+    <Position X="12.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQBAIAAAAAAAgAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PlayerController.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RigidBody2D">
+    <Position X="14.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YIQBAAAAAAAEEgAgAABEAAAEYAABACAAAAIAAAggAAA=</HashCode>
+      <FileName>RigidBody2D.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircleCollider2D">
+    <Position X="16" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQBAAAAAAAIIgAABABAAACAAABBAAEAAAAAAAiAAAA=</HashCode>
+      <FileName>CircleCollider2D.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Transformation">
+    <Position X="2.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAkABCAAACCAAAAACAAAIQAEMkoAAAAEAgEggAQ=</HashCode>
+      <FileName>Transformation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

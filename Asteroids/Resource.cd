@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Resource">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgACAIAAAACAIAAAAAAgAAAACAAAAEAAACAAAAAA=</HashCode>
+      <FileName>Resource.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sprite2D">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEAAgACCAAAAACAIQAAAAAAQAAAAIAAABAAAAAAAAAA=</HashCode>
+      <FileName>Sprite2D.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Audio">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgACAAAAABAAIAAEAAAEAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Audio.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ResourceType">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAACA=</HashCode>
+      <FileName>Resource.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
