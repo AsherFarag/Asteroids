@@ -10,6 +10,8 @@ public:
 
 	void Update(float a_DeltaTime);
 
+	void Restart();
+
 	#pragma region Player Handling
 
 public:
@@ -22,6 +24,7 @@ public:
 
 	// ===== On Death =====
 	void DisplayDeathScreen(); 
+	void DisplayRestartButton();
 	void RespawnPlayer();
 	void Reset();
 	bool m_GameOver = false;
@@ -29,6 +32,8 @@ public:
 private:
 	int m_PlayerLives = 3;
 	int m_Score = 0;
+
+	Rectangle RestartButton = Rectangle{ 0, 0, 300, 100};
 
 	#pragma endregion
 

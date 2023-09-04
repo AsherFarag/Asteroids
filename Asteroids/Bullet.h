@@ -10,7 +10,7 @@ class Bullet :
 {
 public:
 	Bullet(Transformation* a_CopyTransform, float a_Speed);
-	~Bullet();
+	virtual ~Bullet();
 
 	virtual void Update(float a_DeltaTime) override;
  	virtual void Destroy() override { delete this; }

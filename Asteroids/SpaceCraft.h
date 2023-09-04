@@ -11,7 +11,7 @@ class SpaceCraft
 {
 public:
 	SpaceCraft();
-	~SpaceCraft();
+	virtual ~SpaceCraft();
 
 	virtual void Update(float a_DeltaTime) override;
 	virtual void Destroy() override;

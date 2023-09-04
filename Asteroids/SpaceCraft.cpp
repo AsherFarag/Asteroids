@@ -44,12 +44,11 @@ void SpaceCraft::Destroy()
 	if (EngineAPI::GetGameManager()->GetLives() > 0) // On Death State with more than 0 Lives left
 	{
 		EngineAPI::GetGameManager()->AddLives(-1); // Subracts a Life
-		delete this;
 		EngineAPI::GetGameManager()->RespawnPlayer();
 	}
 	else // On Death with 0 Lives
 	{
-		EngineAPI::GetGameManager()->m_GameOver = true;
 		delete this;
+		EngineAPI::GetGameManager()->m_GameOver = true;
 	}
 }

@@ -12,7 +12,7 @@ class GameObject
 public:
 	GameObject();
 	GameObject(GameObject* a_Parent);
-	~GameObject();
+	virtual ~GameObject();
 
 	virtual void Destroy() = 0;
 	

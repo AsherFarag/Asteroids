@@ -11,6 +11,14 @@ void GameManager::Update(float a_DeltaTime)
 	SpawnAsteroids(a_DeltaTime);
 }
 
+void GameManager::Restart()
+{
+	m_GameOver = false;
+	m_Score = 0;
+	m_PlayerLives = 3;
+	RespawnPlayer();
+}
+
 #pragma region Player Handling
 
 void GameManager::AddScore(int a_Points)
@@ -39,19 +47,51 @@ void GameManager::DisplayLives(int a_PosX, int a_PosY, Color a_Colour, int a_Fon
 
 void GameManager::DisplayDeathScreen()
 {
-	if (m_GameOver)
+	const char* Text = "GAME OVER!";
+	int FontSize = 100;
+	float TextWidth = MeasureText(Text, FontSize);
+
+	DrawText(Text,
+		(EngineAPI::GetWindowWidth() - TextWidth) / 2, // Draws at the middle of Screen Width
+		(EngineAPI::GetWindowHeight() / 2) - FontSize, // Draws at the middle of Screen Height
+		FontSize,
+		RED);
+}
+
+void GameManager::DisplayRestartButton()
+{
+	RestartButton.x = EngineAPI::GetWindowWidth() / 2 - 150; // Middle of Screen Width
+	RestartButton.y = EngineAPI::GetWindowHeight() / 2; // Middle of Screen Height
+
+	if (CheckCollisionPointRec(GetMousePosition(), RestartButton))
 	{
+		DrawRectangle(
+			RestartButton.x,
+			RestartButton.y,
+			RestartButton.width,
+			RestartButton.height,
+			GREEN);
 
-		const char* Text = "GAME OVER!";
-		int FontSize = 100;
-		float TextWidth = MeasureText(Text, FontSize);
-
-		DrawText(Text,
-			(EngineAPI::GetWindowWidth() - TextWidth) / 2, // Draws at the middle of Screen Width
-			(EngineAPI::GetWindowHeight() / 2) - FontSize, // Draws at the middle of Screen Height
-			FontSize,
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+		{
+			Restart();
+		}
+	}
+	else
+	{
+		DrawRectangle(
+			RestartButton.x,
+			RestartButton.y,
+			RestartButton.width,
+			RestartButton.height,
 			RED);
 	}
+
+	DrawText("Restart",
+		EngineAPI::GetWindowWidth() / 2 - 140, // Draws at the middle of Screen Width
+		EngineAPI::GetWindowHeight() / 2 + 15, // Draws at the middle of Screen Height
+		70,
+		WHITE);
 }
 
 void GameManager::RespawnPlayer()

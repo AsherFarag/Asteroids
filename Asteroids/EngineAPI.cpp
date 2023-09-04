@@ -67,7 +67,11 @@ void EngineAPI::Run()
 		// Display Player Lives:      Pos  Colour  Font
 		m_GameManager.DisplayLives(10, 50, SKYBLUE, 50);
 		// Display Game Over Screen IF it is Game Over
-		m_GameManager.DisplayDeathScreen();
+		if (m_GameManager.m_GameOver)
+		{
+			m_GameManager.DisplayDeathScreen();
+			m_GameManager.DisplayRestartButton();
+		}
 
 		// ===== FPS Counter =====
 		std::string FPS = "FPS: " + std::to_string(GetFPS());
@@ -76,6 +80,7 @@ void EngineAPI::Run()
 		#pragma endregion
 
 		EndDrawing();
+
 		#pragma endregion
 	}
 }
@@ -132,7 +137,7 @@ EngineAPI::EngineAPI()
 
 EngineAPI::~EngineAPI()
 {
-
+	ClearGameObjects();
 }
 
 #pragma endregion
@@ -155,7 +160,18 @@ void EngineAPI::Unload()
 
 void EngineAPI::ClearGameObjects()
 {
+	auto Temp = m_Instance->m_GameObjects;
+	for (auto GameObject : Temp)
+	{
+		delete GameObject;
+	}
 	m_Instance->m_GameObjects.clear();
+
+	auto TempPhys = m_Instance->GetPhysicsManager()->m_CircleColliders;
+	for (auto Collider : TempPhys)
+	{
+		delete Collider;
+	}
 	m_Instance->GetPhysicsManager()->m_CircleColliders.clear();
 }
 

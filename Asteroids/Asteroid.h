@@ -12,7 +12,7 @@ public:
     Asteroid(int a_Size); // Base Constructor
     Asteroid(int a_Size, Transformation* a_CopyTransformation); // Called when an Asteroid is Destroyed and Smaller ones are created
     Asteroid(int a_Size, Vec3 a_SpawnPosition, float a_Rotation, float a_Speed); // Called when a New Asteroid is being made by the Game Manager
-    ~Asteroid();
+    virtual ~Asteroid();
 
     virtual void Update(float a_DeltaTime) override;
     virtual void Destroy() override;
